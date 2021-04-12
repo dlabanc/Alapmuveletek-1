@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Muveletek extends javax.swing.JFrame {
 
@@ -208,6 +209,11 @@ public class Muveletek extends javax.swing.JFrame {
         mnuFajl.add(mnuFajlMegnyit);
 
         mnuFajlMent.setText("Ment");
+        mnuFajlMent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuFajlMentActionPerformed(evt);
+            }
+        });
         mnuFajl.add(mnuFajlMent);
 
         mnMentes.setText("Mentés másként...");
@@ -289,6 +295,36 @@ public class Muveletek extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMegoldasActionPerformed
 
     private void mnMentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnMentesActionPerformed
+        JFileChooser fc = new JFileChooser(new File("."));
+        fc.setDialogTitle("Mentés másként");
+        fc.setAcceptAllFileFilterUsed(false);
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG és GIF képek","png","gif");
+        fc.addChoosableFileFilter(filter);
+        FileNameExtensionFilter txtfilter = new FileNameExtensionFilter("csak szöveg *.txt)","txt");
+        fc.addChoosableFileFilter(txtfilter);
+        FileNameExtensionFilter ldfilter = new FileNameExtensionFilter("speciális (*.ld)","ld");
+        fc.addChoosableFileFilter(ldfilter);
+        fc.setFileFilter(txtfilter);
+        
+        int valasztottGomb = fc.showSaveDialog(this);
+        if (valasztottGomb == JFileChooser.APPROVE_OPTION) {
+            File f = fc.getSelectedFile();
+                        
+            String[] kit = ((FileNameExtensionFilter)fc.getFileFilter()).getExtensions();
+            
+            String fn = f.getName() + "." + kit[0];
+
+            lblEredmeny.setText("<html>Elérés: " + f.getPath() + "<br> Fájl neve: " + fn + "</html>");
+            try {
+                Files.write(Paths.get(f.getPath() + "."+kit[0]), "Statisztika: ".getBytes());
+            } catch (IOException ex) {
+                Logger.getLogger(Muveletek.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_mnMentesActionPerformed
+
+    private void mnuFajlMentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFajlMentActionPerformed
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle("Fájl mentése");
         fc.setCurrentDirectory(new File("."));
@@ -300,13 +336,13 @@ public class Muveletek extends javax.swing.JFrame {
             if (f.isDirectory()) {
                 lblEredmeny.setText("<html>Elérés: " + f.getPath() + "<br> Könyvtár: " + f.getName() + "</html>");
                 try {
-                    Files.write(Paths.get(f.getPath(), "stat.txt") , "Statisztika: ".getBytes());
+                    Files.write(Paths.get(f.getPath(), "stat.txt"), "Statisztika: ".getBytes());
                 } catch (IOException ex) {
                     Logger.getLogger(Muveletek.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
-    }//GEN-LAST:event_mnMentesActionPerformed
+    }//GEN-LAST:event_mnuFajlMentActionPerformed
 
     /**
      * @param args the command line arguments
