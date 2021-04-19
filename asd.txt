@@ -1,6 +1,0 @@
-Alapműveletek gyakoroltatása statisztika:
-   Össz kérdések száma: 1   Össz Probálkozások száma: 1
-             Összeadás: 1                  Összeadás: 1
-               Kivonás: 0                    Kivonás: 0
-               Szorzás: 0                    Szorzás: 0
-               Szorzás: 0                    Szorzás: 0
