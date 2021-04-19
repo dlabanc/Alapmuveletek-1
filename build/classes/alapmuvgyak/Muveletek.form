@@ -15,6 +15,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Megnyit"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuFajlMegnyitActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuFajlMent">
               <Properties>
@@ -77,6 +80,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Oszt&#xe1;s"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbmOsztActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -110,17 +116,21 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Component id="pnlGyakorlas" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnUj" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="btnMegoldas" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMuvelet" alignment="1" min="-2" pref="87" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -131,7 +141,9 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="btnUj" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblMuvelet" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnMegoldas" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="pnlGyakorlas" min="-2" max="-2" attributes="0"/>
@@ -217,6 +229,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xda;j feladat"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUjActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnMegoldas">
       <Properties>
@@ -239,24 +254,27 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblEredmeny" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Component id="lblEredmeny" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="lblOsszeadKerdes" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblKivonasKerdes" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblOsztasKerdes" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblSzorzasKerdes" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblOsszKerdes" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                              <Component id="lblOsszKerdes" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="31" max="32767" attributes="0"/>
+                          <EmptySpace pref="54" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblKivonasProba" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblSzorzasProba" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblOsszeadProba" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lblOsztasProba" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbllblOsszProba" alignment="1" min="-2" pref="156" max="-2" attributes="0"/>
+                              <Component id="lblOsszProba" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -270,7 +288,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblOsszKerdes" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbllblOsszProba" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblOsszProba" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -304,13 +322,13 @@
         <Component class="javax.swing.JLabel" name="lblOsszKerdes">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="&#xd6;ssz k&#xe9;rd&#xe9;sek sz&#xe1;ma: 1"/>
+            <Property name="text" type="java.lang.String" value="&#xd6;ssz k&#xe9;rd&#xe9;sek sz&#xe1;ma: 0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbllblOsszProba">
+        <Component class="javax.swing.JLabel" name="lblOsszProba">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="&#xd6;ssz Prob&#xe1;lkoz&#xe1;sok sz&#xe1;ma: 1"/>
+            <Property name="text" type="java.lang.String" value="&#xd6;ssz Prob&#xe1;lkoz&#xe1;sok sz&#xe1;ma: 0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblEredmeny">
@@ -321,7 +339,7 @@
         <Component class="javax.swing.JLabel" name="lblOsszeadKerdes">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="&#xd6;sszead&#xe1;s: 1"/>
+            <Property name="text" type="java.lang.String" value="&#xd6;sszead&#xe1;s: 0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblKivonasKerdes">
@@ -345,7 +363,7 @@
         <Component class="javax.swing.JLabel" name="lblOsszeadProba">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="&#xd6;sszead&#xe1;s: 1"/>
+            <Property name="text" type="java.lang.String" value="&#xd6;sszead&#xe1;s: 0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblKivonasProba">
@@ -368,5 +386,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="lblMuvelet">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
