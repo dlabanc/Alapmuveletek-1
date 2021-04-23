@@ -1,12 +1,11 @@
 package alapmuvgyak;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Opcodes;
 import java.io.File;
 import java.io.IOException;
-import static java.lang.Math.random;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -17,6 +16,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Muveletek extends javax.swing.JFrame {
 
     String mentettFajl;
+    int szam1;
+    int szam2;
     int osszKerdes = 0;
     int osszProba = 0;
     int osztasKerdes = 0;
@@ -409,7 +410,7 @@ public class Muveletek extends javax.swing.JFrame {
             mutat = false;
             megoldastMutat = true;
         }
-        
+
     }//GEN-LAST:event_btnMegoldasActionPerformed
 
     private void mnMentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnMentesActionPerformed
@@ -493,6 +494,26 @@ public class Muveletek extends javax.swing.JFrame {
 
             lblEredmeny.setText(
                     "<html>Elérés: " + fn + "<br>Fájl neve: " + f.getName() + "</html>");
+
+            /*Tényleges megnyitás*/
+            Path path = Paths.get(fn);
+            try {
+                
+                byte[] bajtTomb = Files.readAllBytes(path);
+                byte egyBajt = bajtTomb[0];
+                
+                List<String> stringLista = Files.readAllLines(path);
+                String egySor = stringLista.get(1);
+                String[] adatok = egySor.split(":");
+                
+                
+                int temp = 7;
+                /*Tényleges megnyitás vége*/
+
+            } catch (IOException ex) {
+                Logger.getLogger(Muveletek.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         } else {
             JOptionPane.showMessageDialog(this, "Megnyitás megszakítva", "Nincs megnyitott fájl", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -501,8 +522,6 @@ public class Muveletek extends javax.swing.JFrame {
 
     private void rbmOsztActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbmOsztActionPerformed
         boolean jo;
-        int szam1;
-        int szam2;
         do {
             szam1 = (int) (Math.random() * 100);
             szam2 = (int) (Math.random() * 100);
@@ -540,8 +559,6 @@ public class Muveletek extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUjActionPerformed
 
     private void rbmOsszeadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbmOsszeadActionPerformed
-        int szam1;
-        int szam2;
         szam1 = (int) (Math.random() * 100);
         szam2 = (int) (Math.random() * 100);
 
@@ -555,8 +572,6 @@ public class Muveletek extends javax.swing.JFrame {
     }//GEN-LAST:event_rbmOsszeadActionPerformed
 
     private void rbmKivonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbmKivonActionPerformed
-        int szam1;
-        int szam2;
         szam1 = (int) (Math.random() * 100);
         szam2 = (int) (Math.random() * 100);
 
@@ -570,8 +585,6 @@ public class Muveletek extends javax.swing.JFrame {
     }//GEN-LAST:event_rbmKivonActionPerformed
 
     private void rbmSzorozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbmSzorozActionPerformed
-        int szam1;
-        int szam2;
         szam1 = (int) (Math.random() * 100);
         szam2 = (int) (Math.random() * 100);
 
