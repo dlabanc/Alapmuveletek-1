@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.ComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -498,15 +499,30 @@ public class Muveletek extends javax.swing.JFrame {
             /*Tényleges megnyitás*/
             Path path = Paths.get(fn);
             try {
-                
+
                 byte[] bajtTomb = Files.readAllBytes(path);
                 byte egyBajt = bajtTomb[0];
-                
+
                 List<String> stringLista = Files.readAllLines(path);
-                String egySor = stringLista.get(1);
-                String[] adatok = egySor.split(":");
-                
-                
+
+                JLabel[] label = {lblOsszProba, lblOsszKerdes, lblOsszeadProba, lblOsszeadKerdes, lblKivonasProba, lblKivonasKerdes, lblOsztasProba, lblOsztasKerdes, lblSzorzasProba, lblSzorzasKerdes};
+                String[] labelszoveg = {"Össz próbálkozások száma: ", "Össz kérdések száma: ", "Összeadás: ", "Összeadás: ", "Kivonás: ", "Kivonás: ", "Osztás: ", "Osztás: ", "Szorzás: ", "Szorzás: "};
+
+                int lblInd = 0;
+                for (int i = 1; i < stringLista.size(); i++) {
+                    String egySor = stringLista.get(i);
+                    String[] adatok = egySor.split(": ");
+                    String s2 = adatok[2];
+                    adatok = adatok[1].split(" ");
+                    String s1 = adatok[0];
+                    
+                    label[lblInd].setText(labelszoveg[lblInd] + s2);
+                    label[lblInd+1].setText(labelszoveg[lblInd+1] + s1);
+                    
+                    lblInd += 2;
+                    
+                }
+
                 int temp = 7;
                 /*Tényleges megnyitás vége*/
 
@@ -679,7 +695,7 @@ public class Muveletek extends javax.swing.JFrame {
 
     private String tartalomOsszeallitas() {
         String statisztika = "Alapműveletek gyakoroltatása statisztika:\n";
-        JLabel[] lblTomb = new JLabel[]{lblOsszKerdes, lblOsszProba, lblOsszeadKerdes, lblOsszeadProba, lblKivonasKerdes, lblKivonasProba, lblSzorzasKerdes, lblSzorzasProba, lblSzorzasKerdes, lblSzorzasProba};
+        JLabel[] lblTomb = new JLabel[]{lblOsszKerdes, lblOsszProba, lblOsszeadKerdes, lblOsszeadProba, lblKivonasKerdes, lblKivonasProba, lblOsztasKerdes, lblOsztasProba, lblSzorzasKerdes, lblSzorzasProba};
 
         final int HE = 3;
         final int kerdesMaxHossz = lblOsszKerdes.getText().length() + HE;
